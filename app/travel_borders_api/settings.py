@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%w4*pi7_u-slzaldqd$cm+mf*96lvmdjv#$8yw0)=5vtj@e9lx'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ["DEBUG"]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS']
 
 
 # Application definition
@@ -79,14 +79,15 @@ WSGI_APPLICATION = 'travel_borders_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'countries',
-        'USER': 'travelapi',
-        'PASSWORD': 'pokemon1',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'HOST': os.environ.get('POSTGRES_HOST'),
+        'PORT': os.environ.get('POSTGRES_PORT'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD')
     }
 }
 
