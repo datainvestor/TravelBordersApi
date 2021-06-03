@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Country(models.Model):
+    iso_code = models.CharField(max_length=3, unique=True, verbose_name='Iso Code')
     name = models.CharField(max_length=100, unique=True, verbose_name='Country')
 
     class Meta:
@@ -18,10 +19,6 @@ class OriginCountry(models.Model):
     destinations = models.ManyToManyField(
         Country, related_name="destinations", through="BorderStatus"
     )
-
-    @property
-    def origin_country_name(self):
-        return self.origin_country.name
 
     class Meta:
         verbose_name_plural = "Origin Countries"

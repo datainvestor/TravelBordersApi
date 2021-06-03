@@ -21,4 +21,4 @@ class OriginCountryViewSet(viewsets.ModelViewSet):
     serializer_class = OriginCountrySerializer
     #use django filter backend instead of search filter to get query bu filter fields instead of `search=`
     filter_backends = (DjangoFilterBackend,)
-    filter_fields=('origin_country',)
+    filter_fields=('origin_country__name',)
